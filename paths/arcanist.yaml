@@ -1,0 +1,84 @@
+path: Arcanist
+colors: E100FF - 5300EF
+resources: FWW
+
+
+cards:
+- Arcane Research:
+    cost: F
+    text: >
+        Recall two random advanced cards you have not yet learned. If you recall an innate card, play it immediately.
+
+        \textit{(You can't research cards you've already researched this match.)}
+    upgrade cost: 5
+    upgrade: >
+        Also turn your banished Forbidden Magic cards face down and recall one at random.
+
+
+- Forcefield:
+    cost: W
+    text: >
+        \block
+
+        For the rest of the match, I cost no resources.
+
+
+- Meteor Invocation:
+    cost: WA
+    text: >
+        \sequence
+        [No effect.]
+        [\attack{4}]
+    purchase: 0
+    upgrade cost: 4
+    upgrade: >
+        I get +2 attack power.
+
+
+- Shrinking Ray:
+    cost: WA
+    types: oneshot
+    text: >
+        Your opponent must pay \mana{AA} (or \mana{A} if that's all they have) before they pay for cards they are playing this turn. If this leaves them unable to pay for a card, they recall it and don't play it.
+    purchase: 4
+
+
+- Spellweaving:
+    cost:
+    types: innate, permanent
+    text: >
+        \onplay{Reveal an Arcanist card and a non-Arcanist card from your hand.}
+
+        When you play one of those cards, play the other if able.
+    purchase: 7
+
+
+- All-Consuming Void:
+    cost: A
+    linked: an upgraded {Arcane Research}
+    linked type: Forbidden Magic
+    text: >
+        Score one point for each time you played Arcane Research this match.
+
+        At the end of the turn, end the match. \textit{(The player with more points wins.)}
+
+
+- True Reincarnation:
+    cost:
+    linked: an upgraded {Arcane Research}
+    linked type: Forbidden Magic
+    types: oneshot
+    text: >
+        Your opponent can't score points this turn.
+
+        Restore your resources to your starting resources.
+
+
+- Wake the Old Gods:
+    cost: AAA
+    linked: an upgraded {Arcane Research}
+    linked type: Forbidden Magic
+    text: >
+        \sequence
+        [\attack{4}]
+        [\attack{4}]

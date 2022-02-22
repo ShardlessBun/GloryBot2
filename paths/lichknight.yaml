@@ -1,0 +1,63 @@
+path: Lich Knight
+colors: 820000 - 88ADDB
+resources: SSW
+
+
+cards:
+- Culling Scythe:
+    cost: SA
+    text: >
+        \attack{2}
+
+        When I hit, recall and play \upgrade{a Skeletal Minion}{two Skeletal Minions} if able.
+    upgrade cost: 3
+
+- Skeletal Minion:
+    cost:
+    linked: >
+        {Culling Scythe}
+    linked short: true
+    path card name: Skeletal Minion\ \ (3 copies)
+    types: oneshot
+    text: >
+        \sequence
+        [No effect.]
+        [\attack{1}]
+
+        \textit{If Shambling Ranks is upgraded, I get +1 attack power.}
+
+- Soulless Steel:
+    cost: A
+    text: >
+        Your opponent can't score more than one point this turn.
+
+        \textit{(If they would score, they score only one point. If they have already scored points this turn, they cannot score again.)}
+
+- Shambling Ranks:
+    cost: W
+    types: permanent
+    text: >
+        At the end of each turn, if a player scored points this turn, recall and play a Skeletal Minion if able.
+    purchase: 0
+    upgrade cost: 4
+    upgrade: >
+        Your Skeletal Minions get +1 attack power.
+
+- Call from the Grave:
+    cost:
+    types: oneshot
+    purchase: 3
+    text: >
+        Choose a banished oneshot card you played this match or a Skeletal Minion. Recall and play that card if able.
+
+- Throne of Fallen Souls:
+    cost:
+    types: support
+    purchase: 3
+    text: >
+        You can claim cards from the paths of eliminated players. Claim up to two cards throughout the tournament. All cost symbols on those cards are replaced with \mana{A}.
+
+        When you learn me, gain 3 shadow XP and restore a lost heart. Only shadow XP can be spent to learn and upgrade claimed cards.
+    upgrade cost: 3
+    upgrade: >
+        Gain 5 more shadow XP.

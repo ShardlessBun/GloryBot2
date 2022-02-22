@@ -1,0 +1,97 @@
+path: Guardian
+colors: 92bd28 - D35054
+resources: SSS
+
+
+cards:
+- Raising Dragons:
+    cost:
+    types: innate, permanent
+    text: >
+        \onplay{Choose \upgrade{two Dragons}{three Dragons} and reveal and recall them. They are \textbf{Eggs} for the first three turns of the match, \textbf{Hatchlings} on the fourth turn and \textbf{Adolescents} on the fifth and beyond.}
+
+        At the end of each turn, if your opponent scored points this turn, banish a Dragon from your hand.
+    upgrade cost: 4
+
+
+- Inferno Dragon:
+    cost: A
+    linked: Raising Dragons
+    linked type: Dragon
+    text: >
+      If I am a \textbf{Hatchling} or \textbf{Adolescent}:
+      \thinparbreak
+      \attack{2}
+
+      If I'm an \textbf{Adolescent}:
+
+      I get +3 attack power.
+
+
+- Frost Dragon:
+    cost: A
+    linked: Raising Dragons
+    linked type: Dragon
+    text: >
+      If I am a \textbf{Hatchling} or \textbf{Adolescent}:
+      \thinparbreak
+      \attack{2}
+
+      If I'm an \textbf{Adolescent}:
+
+      I get +1 attack power and your opponent's attacks get -3 attack power.
+
+
+- Shadow Dragon:
+    cost: A
+    linked: Raising Dragons
+    linked type: Dragon
+    text: >
+      If I am a \textbf{Hatchling} or \textbf{Adolescent}:
+      \thinparbreak
+      \attack{2}
+
+      If I'm an \textbf{Adolescent}:
+
+      I get +1 attack power and I can't be blocked.
+
+
+- Defend the Young:
+    cost: S
+    text: >
+      \sequence
+      [\block]
+      [Your opponent's attack cards \upgrade{cost \mana{A} more}{cost \mana{AA} more}.]
+    upgrade cost: 3
+
+
+- Unyielding Protection:
+    cost: SA
+    types: oneshot
+    text: >
+      Your opponent can't score points this turn.
+    purchase: 0
+    upgrade cost: 4
+    upgrade: >
+      I cost no resources.
+
+
+- Nurture Cooperation:
+    cost:
+    types: permanent
+    text: >
+      Your Dragons get +1 attack power.
+
+      When you reveal and play a Dragon, you may play any number of other Dragons from your hand without paying their costs.
+    purchase: 3
+
+
+- Furious Charge:
+    cost: SSA
+    text: >
+      I cost one resource less for each Dragon that has been banished during the match. \textit{(\mana{A} is removed before \mana{S}.)}
+
+      \attack{2}
+
+      \block
+    purchase: 4

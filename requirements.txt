@@ -1,0 +1,4 @@
+py-cord==2.0.0-beta.1
+strictyaml~=1.6.1
+aiopg
+aiopg[sa]

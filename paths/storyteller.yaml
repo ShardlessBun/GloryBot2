@@ -1,0 +1,57 @@
+path: Storyteller
+colors: 990BF0 - E8AD23
+resources: FWW
+
+cards:
+- Hold in Suspense:
+    cost: W
+    text: >
+        \block
+
+        \attack{0}
+
+        When I hit, gain \mana{X}.
+    upgrade cost: 3
+    upgrade: >
+        Gain \mana{XX} instead of \mana{X}.
+
+- Inspire:
+    cost:
+    text: >
+        \sequence
+        [No effect.]
+        [You may play an additional action this turn.]
+    upgrade cost: 3
+    upgrade: >
+        The first time you hit with an attack this match, play me if able.
+
+- Sleep Song:
+    cost: F
+    purchase: 0
+    types: oneshot
+    text: >
+        Choose a card your opponent played this turn. It has no effect and its cost is refunded, then \upgrade{they recall it}{banish it}.
+    upgrade cost: 2
+
+- Myths That Guide:
+    cost: WA
+    purchase: 3
+    types: oneshot
+    text: >
+        \sequence
+        [No effect.]
+        [You see your opponent's hand and choose what they play.]
+    upgrade cost: 3
+    upgrade: >
+        The second time you hit with an attack this match, play me if able.
+
+
+- Library of Legends:
+    cost:
+    purchase: 3
+    types: innate, oneshot
+    text: >
+        Recall \upgrade{one}{two} of the heirlooms linked to me. Play any innate cards you recall.
+
+        If this is the first time I've been played this tournament, link me to six random unused heirlooms first.
+    upgrade cost: 3

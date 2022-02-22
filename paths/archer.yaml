@@ -1,0 +1,51 @@
+path: Archer
+resources: SFF
+colors: 284A30 - 7F8853
+
+cards:
+- Swift Arrow:
+    cost: A
+    text: >
+        \attack{1}
+
+        I can't be blocked unless your \upgrade{opponent pays \mana{A}}{opponent pays \mana{AA}}.
+    upgrade cost: 3
+
+- Careful Aim:
+    cost: F
+    types: permanent
+    text: >
+        The next time you attack, recall me to give an attack +3 attack power.
+    upgrade cost: 3
+    upgrade: I cost no resources.
+
+- Keep At Range:
+    cost: A
+    types: permanent
+    purchase: 0
+    text: >
+        Your opponent's attack cards cost \mana{A} more to play. This includes the turn you play me. If they can't pay, the attack is recalled and refunded.
+
+        When you are hit by an attack, recall me.
+    upgrade cost: 3
+    upgrade: >
+        \innatebanner
+
+- Shield-Piercing Bolt:
+    cost: SA
+    purchase: 2
+    text: >
+        \attack{2}
+
+        If your opponent is using a block, they must block me if able. When they do, banish that block card.
+    upgrade cost: 3
+    upgrade: I get +1 attack power
+
+- Survey From Cover:
+    cost:
+    purchase: 4
+    types: oneshot
+    text: >
+        If your opponent isn't attacking you, you may play another card.
+
+        \block

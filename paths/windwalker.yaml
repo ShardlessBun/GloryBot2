@@ -1,0 +1,60 @@
+path: Windwalker
+colors: 348bd2 - bce0e5
+resources: FFW
+
+
+cards:
+- Tempest Blade:
+    cost: AA
+    text: >
+      \attack{2}
+
+      When I am blocked, you may pay \mana{WA} to score points equal to my attack power.
+    upgrade cost: 3
+    upgrade: >
+      I cost \mana{A} instead of \mana{AA}.
+
+
+- Leap Skyward:
+    cost: F
+    text: >
+      \sequence
+      [\block]
+      [If you are attacking, give an attack +2 attack power.]
+
+
+- Storm Surge:
+    cost:
+    text: >
+        At the end of this turn, gain \mana{X} until you have more resources than your opponent.
+    purchase: 0
+    big art: true
+
+
+- Wind's Favor:
+    cost: A
+    types: innate, permanent
+    text: >
+        As long as both players are attacking, your attacks get +1 attack power.
+    purchase: 3
+
+
+- Bring the Lightning:
+    cost:
+    types: innate, permanent
+    text: >
+        When you attack, banish me to give one of your attacks +1 attack power. Note its final attack power and recall Echoing Thunder.
+    purchase: 4
+    upgrade cost: 4
+    upgrade: >
+        Double the noted number.
+
+
+- Echoing Thunder:
+    cost:
+    linked: Bring the Lightning
+    types: oneshot
+    text: >
+        My base attack power X is the number you noted for Bring the Lightning.
+
+        \attack{X}

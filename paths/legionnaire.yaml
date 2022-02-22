@@ -1,0 +1,75 @@
+path: Legionnaire
+# colors: FFA500 - AF0301
+colors: FFB300 - AF1E01
+resources: SSF
+
+
+cards:
+- Balanced Blade:
+    cost: AA
+    text: >
+        \attack{2}
+
+        Recall Parry.
+    upgrade cost: 3
+    upgrade: >
+        I cost \mana{A} instead of \mana{AA}.
+
+
+- Parry:
+    cost:
+    linked: Balanced Blade
+    types: oneshot
+    text: >
+        \block
+
+
+- Arrow Volley:
+    cost: SF
+    text: >
+        Repeat the following \upgrade{twice}{three times}:
+        \thinparbreak
+        \attack{1}
+
+        \textit{(One block can only stop one attack.)}
+    upgrade cost: 4
+
+
+- Decisive Strike:
+    cost: SAA
+    text: >
+        \attack{3}
+
+        I cost one resource less for each two points you've scored this match.
+        \linebreak\textit{(\mana{A} is removed before \mana{S}.)}
+    purchase: 0
+    upgrade cost: 3
+    upgrade: >
+        I get +1 attack power.
+
+
+- Battle Tactics:
+    cost: A
+    types: innate, permanent
+    text: >
+        \onplaynoline[choose a strategy:]{
+
+            \textit{Skirmish} -- You may play an additional action on the \upgrade{second}{second and fourth} turn.
+
+            \textit{Ambush} -- When you attack, banish me to give an attack \upgrade{+2}{+4} attack power.
+
+            \textit{Besiege} -- Your opponent pays \upgrade{\mana{A}}{\mana{AA}}.
+        }
+
+    purchase: 3
+    upgrade cost: 3
+
+
+- Shield Wall:
+    cost: S
+    types: permanent
+    text: >
+        \onplay{\thinparbreak\block}
+
+        When you attack, block an attack with attack power equal to or less than your attack.
+    purchase: 4

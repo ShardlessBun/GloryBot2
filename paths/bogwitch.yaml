@@ -1,0 +1,85 @@
+path: Bog Witch
+colors: 347C49 - 7959B7
+resources: WWW
+
+
+cards:
+- Unburial Rite:
+    cost: W
+    text: >
+        \block
+
+        Recall The Risen One.
+    upgrade cost: 3
+    upgrade: >
+        The Risen One gets +2 attack power.
+
+
+- The Risen One:
+    cost: AA
+    types: oneshot
+    linked: Unburial Rite
+    text: >
+      \attack{4}
+
+      \textit{If Unburial Rite is upgraded, I get +2 attack power.}
+
+
+- Lantern's Touch:
+    cost:
+    text: >
+        \attack{0}
+
+        Gain \mana{W}.
+
+        When I hit, your attacks can't be blocked next turn.
+    upgrade cost: 4
+    upgrade: >
+        Also gain \mana{X}.
+
+
+- Polliwog Curse:
+    cost: W
+    types: oneshot
+    text: >
+        \sequence
+        [Your opponent recalls Audacious Croak and Leap Away.]
+        [Your opponent can only play frog cards.]
+
+        When I leave play, banish both Frog cards.
+    purchase: 0
+
+
+- Audacious Croak:
+    cost:
+    linked: Polliwog Curse
+    linked type: Frog
+    text: >
+      Gain \mana{X}.
+
+
+- Leap Away:
+    cost: AA
+    linked: Polliwog Curse
+    linked type: Frog
+    text: >
+      \block
+
+
+- Putrid Cauldron:
+    cost:
+    types: innate, permanent
+    text: >
+        If you would gain resources during a match, put them on me instead.
+
+        Your cards' costs are reduced by whatever I could pay for. \textit{(For example, if you have \mana{W} in the cauldron and you play a card that costs \mana{FW}, you would only need to pay \mana{F}.)}\vspace{0.2mm}
+    purchase: 2
+
+
+- Disperse into Rotflies:
+    cost: WA
+    text: >
+        \sequence
+        [\attack{1}\par\block]
+        [\attack{1}]
+    purchase: 4

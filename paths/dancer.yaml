@@ -1,0 +1,70 @@
+path: Dancer
+colors: 5EF285 - F48DD2
+resources: SFF
+
+
+cards:
+- Elegant Reversal:
+    cost: SF
+    text: >
+        \block
+
+        When I block:
+        \thinparbreak
+        \attack{X}
+        \thinparbreak
+        X is the attack power of the attack I'm blocking.
+
+
+- Mesmerize:
+    cost:
+    text: >
+        \sequence
+        [\upgrade{No effect}{Gain \mana{X}.}]
+        [Your opponent's cards cost twice as many resources. Added cost is in \mana{A}.
+
+        \textit{(For example, a card that would cost \mana{FA} costs \mana{FAAA}.)}]
+    upgrade cost: 3
+
+
+- Dizzying Spin:
+    cost: F
+    text: >
+        \attack{1}
+
+        \upgrade{When I hit}{Whether or not I hit}, name a card. Your opponent can't play that card next turn.
+    purchase: 0
+    upgrade cost: 2
+
+
+- Just Out of Reach:
+    cost: A
+    text: >
+        Your opponent's attacks get -2 attack power this turn.
+    purchase: 0
+    upgrade cost: 5
+    upgrade: >
+        You may play me at any time. \linebreak If you do, banish me after use. \linebreak\textit{(No action required. Yes, any time.)}
+
+
+- Entice to Dance:
+    cost: A
+    types: innate, permanent
+    text: >
+        \onplay{Your opponent recalls Try to Keep Up.}
+
+        When the match ends, score three points.
+    purchase: 3
+    upgrade cost: 3
+    upgrade: >
+        Try to Keep Up costs \mana{A}.
+
+
+- Try to Keep Up:
+    cost:
+    types: oneshot
+    linked: Entice to Dance
+    text: >
+        Banish Entice to Dance.
+
+        \textit{If Entice to Dance is upgraded, I cost \mana{A}.}

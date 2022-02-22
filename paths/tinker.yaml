@@ -1,0 +1,51 @@
+path: Tinker
+colors: 592424 - CE803B
+resources: FFF
+
+cards:
+- Clockwork Ballista:
+    cost: FA
+    text: >
+        \sequence
+        [\attack{1}]
+        [\attack{1}]
+    upgrade cost: 4
+    upgrade: >
+        I get +1 attack power.
+
+- Mechanized Snare:
+    cost: F
+    text: >
+        \sequence
+        [\block]
+        [\block]
+
+        When I block an attack, \upgrade{recall me}{recall me unless you pay \mana{A}}.
+    upgrade cost: 3
+
+- Concentrate:
+    cost:
+    purchase: 0
+    text: >
+        Gain \mana{F}.
+
+        At the end of the turn, if you weren't hit by an attack this turn, gain an additional \mana{FF}.
+    upgrade cost: 2
+    upgrade: If I would make you gain \mana{F}, instead gain that much \mana{X}.
+
+- Built to Last:
+    cost: FA
+    purchase: 4
+    types: innate, permanent
+    text: >
+        Your sequence cards stay in play for an additional turn, with the same effect as the final printed turn.
+
+- Innovator's Triumph:
+    cost:
+    purchase: 5
+    types: permanent
+    text: >
+        \onplay{Score one point.}
+
+        All your other non-heirloom cards have their upgraded effects.
+        \textit{(Upgrades are marked by the \upgradeicon\ symbol.)}

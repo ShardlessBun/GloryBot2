@@ -1,0 +1,58 @@
+path: Traveler
+colors: 54939E - FFCE7F
+resources: FFW
+
+
+cards:
+- Aeon-Worn Staff:
+    cost: A
+    text: >
+        \attack{1}
+
+        If both players scored points last turn, I get +1 attack power.
+
+        If neither player scored points last turn, I cost one resource less to play.
+
+
+- Shelter at the Crossroads:
+    cost: F
+    text: >
+        \sequence
+        [\block]
+        [Choose and reveal an additional card as part of your action. See what your opponent reveals, then recall and don't play one of your revealed cards.]
+
+
+- Out of Time:
+    cost: W
+    text: >
+        \sequence
+        [No effect.]
+        [No effect.]
+        [\attack{3}]
+    purchase: 0
+    upgrade cost: 3
+    upgrade: >
+        I can't be blocked unless your opponent pays \mana{A}.
+
+
+- Alter Fate:
+    cost:
+    types: oneshot
+    text: >
+        Name a card your opponent is playing.
+
+        Restart the turn, except your opponent can't play the named card this turn, and I am banished.
+    purchase: 2
+
+
+- Navigate the Sands:
+    cost:
+    types: innate, permanent
+    text: >
+        After the second turn of the match, choose one:
+
+        \ -- The match lasts \upgrade{one turn}{two turns} longer.
+
+        \ -- The match ends \upgrade{one turn}{two turns} sooner.
+    purchase: 3
+    upgrade cost: 4

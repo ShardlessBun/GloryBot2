@@ -1,0 +1,82 @@
+path: Assassin
+colors: 590050 - F700AD
+resources: FFF
+
+
+cards:
+- Backstab:
+    cost: F
+    text: >
+        If your opponent is attacking you, refund my cost and I have no effect.
+
+        Otherwise:
+        \thinparbreak
+        \attack{3}
+    upgrade cost: 3
+    upgrade: >
+        I get +2 attack power.
+
+- Shadowstep:
+    cost:
+    text: >
+        You may pay \mana{F}. If you don't, I gain \textbf{oneshot}. \textit{(Banish me after use)}
+
+        \block
+
+- Trap Setting:
+    cost: F
+    text: >
+        Turn your banished Trap cards face down. Look at them and secretly choose one of them. \textit{(Put it near your cards in play.)}
+
+        You can turn the chosen Trap face up any time after this turn ends to recall and play it.
+    purchase: 0
+
+
+- Poisoned Dagger:
+    cost:
+    types: permanent
+    linked: Trap Setting
+    linked type: Trap
+    text: >
+        You can't play me unless you hit your opponent with an attack this turn.
+
+        At the start of each turn, score one point.
+
+
+- Smoke Shroud:
+    cost:
+    linked: Trap Setting
+    linked type: Trap
+    types: oneshot
+    text: >
+        If your opponent didn't attack last turn, they can't score points this turn.
+
+
+- Feign Defeat:
+    cost:
+    linked: Trap Setting
+    linked type: Trap
+    types: oneshot
+    text: >
+        If your opponent has more points than you, they can't block this turn.
+
+
+- Always More Knives:
+    cost: FAA
+    text: >
+        \sequence
+        [\attack{3}]
+        [\attack{1}]
+    purchase: 0
+    upgrade cost: 3
+    upgrade: >
+        I cost \mana{FA} instead of \mana{FAA}.
+
+- Hidden in Plain Sight:
+    cost:
+    types: innate, permanent
+    text: >
+        After the first turn of the match, but before the second, there is a secret turn. Your opponent and their cards do not participate in this turn. \textit{(You can't hit them with attacks.)}
+
+        Banish me at the end of the secret turn.
+    purchase: 4

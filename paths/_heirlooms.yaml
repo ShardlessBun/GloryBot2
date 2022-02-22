@@ -1,0 +1,330 @@
+path: Heirloom
+colors: AF7942 - F2C087
+resources: XXX
+
+
+cards:
+
+- Tome of Madness:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        \onplay[if your hand is empty:]{\thinparbreak\attack{4}}
+
+        Your non-permanent cards gain \textbf{oneshot}. \textit{(Banish them after use.)}
+
+        At the end of each turn, if your hand is empty, recall me.
+
+
+- Cursed Inheritance:
+    cost:
+    types: heirloom, support
+    text: >
+        When you choose me as your heirloom, gain seven XP and learn or upgrade up to two cards.
+
+        When the tournament begins, announce your curse. As long as you are cursed, you cannot take a player's final heart.
+    upgrade cost: 7
+    upgrade: >
+        Break the curse and lose this heirloom.
+
+
+- Gambler's Dice:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        Your cards don't cost any resources to play.
+
+        If you would choose a card to play during the match, instead choose it at random from among all the cards you could play.
+
+
+- Dr. Doppel's Formula:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        If you've been \textbf{cloned}, you get an additional action during odd-numbered turns.
+    upgrade cost: 7
+    upgrade: >
+        \textbf{Clone} yourself.
+
+
+- Hand of Greed:
+    cost:
+    types: heirloom, support
+    text: >
+        When you choose me as your heirloom, also choose and keep two of your other heirloom options.
+
+        When the tournament begins, announce your greed and lose one heart. Then lose this heirloom.
+
+
+- Ruby Scabbard:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        \onplay{Name one of your attack cards.}
+
+        The named card costs \mana{A} more to play and its attacks get +2 attack power.
+
+
+- Brawling Gauntlet:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        When you attack for the third time this match, banish me to gain \mana{XX}.
+
+
+- Crooked Sundial:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        The match lasts one turn longer. \textit{(This typically makes the sixth turn the final turn.)}
+
+
+- Illusory Greatsword:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        Your attacks get +1 attack power.
+
+        When you are hit by an attack, banish me unless you pay \mana{A}.
+
+
+- Kobold King's Candle:
+    cost: AAA
+    types: heirloom, innate, permanent
+    text: >
+        All points you score are doubled.
+
+
+- Soul-Split Mirror:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        If your opponent would score points, instead you must banish me and two of your other non-innate cards, and they score no points this turn.
+
+
+- Oxless Plow:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        If you would complete a sequence card, instead banish me to keep that card in play for an additional turn, with the same effect as the final printed turn.
+
+
+- Librarian's Ladder:
+    cost: A
+    types: heirloom, innate, permanent
+    text: >
+        When you choose me as your heirloom, choose and keep one starter card from your third path option.
+
+        \onplay{Gain \mana{X}.}
+
+        You have no maximum hand size.
+
+
+- Elvish Cookbook:
+    cost: A
+    types: heirloom, innate, permanent
+    text: >
+        When you gain one or more resources during the match, pay \mana{A} to score one point.
+
+
+- Gregor's Unlucky Shirt:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        When your opponent scores their fourth point of the match, banish me to score one point.
+
+
+- Sequined Mask:
+    cost: A
+    types: heirloom, innate, permanent
+    text: >
+        \onplay{Choose a turn number.}
+
+        On the chosen turn, if you would choose and reveal a card as your action, instead your opponent reveals their card first, then you choose and reveal a card. Then banish me.
+
+
+- Longstep Boots:
+    cost: A
+    types: heirloom, innate, permanent
+    text: >
+        On the third turn of the match, you get an additional action. Then banish me.
+
+
+- Sentinel's Crossbow:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        When you play a card with the same name as a card you played last turn, banish me to:
+        \thinparbreak
+        \attack{2}
+
+
+- Mask of the Mimic:
+    cost:
+    types: heirloom
+    text: >
+        Reveal me when the match starts. I don't count for maximum hand size.
+
+        When you reveal me to play me, name a card your opponent played last turn. I am a copy of that card until I leave play, except that all cost symbols are replaced with \mana{A}.
+
+
+- Prayer Rod:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        When you score your fourth point of the match, name a non-innate card. At the end of the turn, banish me to banish all cards with that name from your opponent's hand and from play.
+
+
+- Circlet of Obsession:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        When you choose me as your heirloom, I consume one of your two chosen paths.
+        \textit{(You get no cards or resources from it.)}
+
+        \onplay{If I have consumed a path, gain \mana{XXXX} and one XP.}
+
+        The first time one of your other cards would be banished during the match, banish me instead.
+
+
+- Morpheus Clay:
+    cost:
+    types: heirloom, innate
+    text: >
+        When you play me, choose another innate card you are playing. I become a copy of that card, except that I cost \mana{A} in addition to that card's cost.
+
+
+- Inflatable Armor:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        At the start of each turn, if you have no resources remaining, both players' attacks get -1 attack power this turn.
+
+
+- Combat Tortoise:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        At the end of each turn, if you didn't play a card this turn, my final attack gets +1 attack power.
+
+        On the final turn of the match:
+        \thinparbreak
+        \attack{1}
+
+
+- Bag of Infinite Rats:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        Your cards can't block.
+
+        When you play a card, if it costs exactly the same number of resources as a card your opponent is playing, banish the card your opponent is playing at the end of the turn. \textit{(Resource cost as printed on the card.)}
+
+
+- Explorer's Pack:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        When you choose me as your heirloom, choose and keep a third path option. You can't use more than two paths in a match unless you play me.
+
+        \onplay{Pay \mana{AAA}.} \textit{(Because otherwise you would be starting with nine resources.)}
+
+
+- Broken Violin:
+    cost:
+    types: heirloom, innate, oneshot
+    text: >
+        If you've \textbf{repaired} me, gain \mana{XX}.
+    upgrade cost: 3
+    upgrade: \textbf{Repair} me.
+
+
+- Grave-Mist Shovel:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        All attacks have a base attack power of 1.
+
+        \textit{(All attacks includes yours and your opponents. This replaces the printed attack power, but can still be increased by effects.)}
+
+
+- Troll-Hunter's Quiver:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        \onplay{Name one of your attack cards.}
+
+        The named card can't be blocked unless your opponent pays \mana{A}.
+
+
+- Pactbound Imp:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        At the start of each turn, before players choose actions, roll a six-sided die.
+
+        After actions are revealed and played, if you remembered to roll and you rolled a 5 or 6:
+        \thinparbreak
+        \attack{1}
+
+
+- The Sun-Slayer:
+    cost: AAAA
+    types: heirloom
+    text: >
+        Reveal me when the match starts. I don't count for maximum hand size.
+
+        \attack{8}
+    big art: true
+
+
+- Bloodletter Quill:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        The first three times you lose a heart, gain an additional one XP.
+
+        As long as you have one or fewer hearts remaining, you have no maximum hand size.
+
+
+- Wistful Memories:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        A card you play on the first turn of the match gains \textbf{oneshot}. When you banish it, banish it under me.
+
+        On the final turn of the match, you may play the banished card as an additional action, and it costs one resource less.
+    designer: Evelyn H.
+
+
+- Ensnaring Vines:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        \onplay{Choose a turn number.}
+
+        On the chosen turn, neither player can score points.
+    designer: Tabitha F.
+
+
+- Dreamer's Seed:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        When you recall one or more linked cards, reveal one of those cards. I become a copy of that linked card for the rest of the match. Recall me, then you may play me immediately.
+    designer: Lixing
+
+
+- Cricket the Cat:
+    cost:
+    types: heirloom, innate, permanent
+    text: >
+        When you attack for the second, fourth, or sixth time this match, roll a six-sided die.
+
+        \textit{Odd} -- Give an attack +1 attack power.
+
+        \textit{Even} -- If your opponent is blocking, they must block this attack if able:
+        \thinparbreak
+        \attack{0}
+
+    designer: Kaci T.

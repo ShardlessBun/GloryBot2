@@ -1,0 +1,76 @@
+path: Druid
+# colors: FFA50A - 3B8E0E
+colors: F49B0C - 34BC0F
+resources: SWW
+
+
+cards:
+- Bind in Thorns:
+    cost: WA
+    text: >
+        \attack{1}
+
+        \block
+    upgrade cost: 3
+    upgrade: >
+        I get +1 attack power.
+
+
+- Lifebloom:
+    cost:
+    text: >
+        \sequence
+        [Gain \mana{X}.]
+        [Gain \mana{X}.]
+    upgrade cost: 4
+    upgrade: >
+        Gain \mana{XX} each turn instead.
+
+
+- Wildshape:
+    cost: A
+    text: >
+        \sequence
+        [Recall Tooth and Claw.\par \vspace{0.5mm} Your opponent's attacks get -1 attack power.]
+        [Your opponent's attacks get -1 attack power.]
+
+        When I leave play, banish Tooth and Claw.
+    purchase: 0
+    upgrade cost: 3
+    upgrade: >
+        I stay in play for an additional turn; same effect as the final turn.
+
+
+- Tooth and Claw:
+    cost: SAA
+    linked: Wildshape
+    text: >
+        \attack{2}
+
+        \attack{2}
+
+        \textit{(One block can only stop one attack.)}
+
+
+- Fierce Seedling:
+    cost: WA
+    types: permanent
+    text: >
+        \onplay{No effect this turn.}
+
+        Each turn after that:
+        \thinparbreak
+        \attack{1}
+    purchase: 3
+
+
+- Sheltering Ancient:
+    cost:
+    types: innate, permanent
+    text: >
+        When you are attacked, banish me to:
+        \thinparbreak
+        \block
+
+        At the end of the second turn of the match, banish me.
+    purchase: 5

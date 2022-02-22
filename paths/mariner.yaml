@@ -1,0 +1,83 @@
+path: Mariner
+colors: 000257 - 4FB1A8
+resources: SSF
+extras: >
+  \newcommand{\drown}[1]{\textcolor[HTML]{3B8594}{\textbf{#1}}}
+
+
+cards:
+- Whaler's Hook:
+    cost: A
+    text: >
+        \attack{1}
+
+        When I hit, banish one of your opponent's non-innate cards from play.
+    upgrade cost: 3
+    upgrade: >
+        I get +1 attack power.
+
+
+- Salt-Captain's Compass:
+    cost:
+    types: innate, permanent
+    text: >
+        \onplay{Recall Sunken Temple and Pirate's Cove.}
+
+        You can only play one Harbor each match. When you play one, banish the other.
+
+        When you banish an opponent's card, \drown{drown} it. \textit{(Harbors use \drown{drowned} cards.)}
+
+
+- Sunken Temple:
+    cost: F
+    types: permanent
+    linked: Salt-Captain's Compass
+    linked type: Harbor
+    text: >
+        \onplay{Your opponent chooses one of their non-innate cards from hand or play. Banish it.}
+
+        When the match ends, score one point for each \drown{drowned} card beyond the first.
+
+
+- Pirate's Cove:
+    cost: F
+    types: permanent
+    linked: Salt-Captain's Compass
+    linked type: Harbor
+    text: >
+        \onplay{Put \mana{XX} on me. Spend these only to play \drown{drowned} cards.}
+
+        \drown{Drowned} cards are kept in your in your hand and can be played as your own.
+
+
+- Trawling Net:
+    cost: S
+    text: >
+        \block
+
+        When I block a card, banish that card.
+    purchase: 0
+    upgrade cost: 3
+    upgrade: >
+        When I block, I block all attacks instead of just one.
+
+
+- Boarding Party:
+    cost: SAA
+    text: >
+        \attack{3}
+
+        Name a non-innate card. Banish all cards with that name from your opponent's hand and from play.
+
+        Play Pirate's Cove if able.
+    purchase: 4
+
+
+- Abyssal Offering:
+    cost:
+    types: oneshot
+    text: >
+        For each two points you've scored this match, your opponent chooses one of their non-innate cards from hand or play. Banish those cards.
+
+        Play Sunken Temple if able.
+    purchase: 4

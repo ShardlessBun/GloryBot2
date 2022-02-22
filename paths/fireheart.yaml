@@ -1,0 +1,69 @@
+path: Fireheart
+# colors: F27100 - F90063
+colors: F26100 - F90063
+resources: WWW
+extras: >
+  \newcommand{\burn}[1]{\textcolor[HTML]{F63132}{\textbf{#1}}}
+
+
+cards:
+- Insatiable Flame:
+    cost: W
+    text: >
+        \attack{1}
+
+        I \burn{burn} your opponent when I hit. \textit{(This can help you set them ablaze)}
+
+
+- Set Ablaze:
+    cost: WWAAA
+    types: oneshot
+    text: >
+        If your opponent has been \burn{burned} at least twice, I cost no resources.
+
+        I can't be blocked.
+
+        \attack{4}
+    upgrade cost: 5
+    upgrade: >
+        I only cost \mana{WWA}.
+
+
+- Inferno Circle:
+    cost:
+    text: >
+        \sequence
+        [If your opponent is attacking you, I \burn{burn} them.]
+        [If your opponent is attacking you, I \burn{burn} them.]
+    purchase: 0
+    upgrade cost: 3
+    upgrade: >
+        I stay in play for an additional turn; same effect as the final turn.
+
+
+- Kindled Flame:
+    cost:
+    types: innate, permanent
+    text: >
+        When your opponent is \burn{burned} for the \upgrade{third time}{third time or fourth time}, recall and play Set Ablaze if able.
+    purchase: 3
+    upgrade cost: 3
+
+
+- Pyre Offering:
+    cost:
+    types: oneshot
+    text: >
+        Reveal me when the match starts. I don't count for maximum hand size.
+
+        \sequence
+        [Banish a non-Fireheart card from your hand to recall Consumed by Flame.]
+        [You get an additional action this turn.]
+    purchase: 4
+
+
+- Consumed by Flame:
+    cost:
+    linked: Pyre Offering
+    text: >
+        I am a copy of the card that was banished by Pyre Offering, except that I also \burn{burn} your opponent when I hit them or block an attack.

@@ -1,0 +1,82 @@
+path: Jester
+colors: 0E53D3 - FF6A30
+resources: SWW
+
+
+cards:
+- Stage-Prop Mockery:
+    cost:
+    text: >
+      \attack{0}
+
+      If your opponent is using a block, they must block me if able. When they do, you \upgrade{score one point}{score two points}.
+    upgrade cost: 3
+
+
+- Explosive Decoy:
+    cost: WAA
+    text: >
+      \block
+
+      When I block an attack:
+      \thinparbreak
+      \attack{3}
+    upgrade cost: 3
+    upgrade: >
+      I cost \mana{WA} instead of \mana{WAA}.
+
+
+- Carnival Mallet:
+    cost: SA
+    text: >
+      \attack{2}
+
+      When I hit, banish a card at random from your hand face down. Next turn, play that card as an additional action. It costs no resources.
+
+
+    purchase: 0
+    upgrade cost: 4
+    upgrade: >
+      Choose the card you banish instead of picking it at random.
+
+
+- Knife-Juggling Mishap:
+    cost:
+    types: oneshot
+    text: >
+      When you play me, swap me with a card your opponent is playing and they refund that card's cost.
+
+      \attack{2}
+
+      \textit{(You will be using your opponent's card, and I will be attacking you. Give them their card back when you would recall it.)}
+    purchase: 3
+
+
+- Immersive Theater:
+    cost:
+    types: innate, permanent
+    purchase: 3
+    text: >
+      \onplay{Turn Comedy and Tragedy face down. Secretly choose one of them to hide under me.}
+
+      On the fourth turn of the match, banish me to recall and play the hidden card as an additional action.
+
+
+- Comedy:
+    cost:
+    types: oneshot
+    linked: Immersive Theater
+    text: >
+      The player who has fewer points when I am revealed uses me to attack the player with more points. In a tie, you attack.
+
+      \attack{2}
+
+
+- Tragedy:
+    cost:
+    types: oneshot
+    linked: Immersive Theater
+    text: >
+      The player who has more points when I am revealed uses me to attack the player with fewer points. In a tie, you attack.
+
+      \attack{2}
