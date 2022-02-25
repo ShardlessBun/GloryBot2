@@ -1,4 +1,4 @@
-py-cord==2.0.0-beta.1
+git+https://github.com/Pycord-Development/pycord.git@master#egg=py-cord
 strictyaml~=1.6.1
 aiopg
 aiopg[sa]
