@@ -1,8 +1,7 @@
-from datetime import datetime, timedelta
-from typing import List
+from datetime import datetime
 
 import sqlalchemy as sa
-from sqlalchemy import Column, Integer, BigInteger, String, ForeignKey, DateTime, null
+from sqlalchemy import Column, Integer, BigInteger, String, DateTime, null
 from sqlalchemy.orm import declarative_base
 
 db = declarative_base()
@@ -12,7 +11,7 @@ card_ruling = sa.Table(
     "card_rulings",
     metadata,
     Column("id", Integer, primary_key=True, autoincrement='auto'),
-    Column("card_name", String(100)),
+    Column("card_name", String(50)),
     Column("ruling_text", String(400)),
     Column("author", String(30)),
     Column("created_ts", DateTime, default=datetime.utcnow())
@@ -45,15 +44,5 @@ pick_submission_table = sa.Table(
     Column("heirloom", String(30), nullable=False),
     Column("path1", String(30), nullable=False),
     Column("path2", String(30)),
-    Column("path2", String(30), default=null()),
+    Column("path3", String(30), default=null()),
 )
-
-# class CardRuling(db):
-#     """A ruling on a card's effects written by a designer"""
-#     __tablename__ = "card_rulings"
-#
-#     id = Column(Integer, primary_key=True, autoincrement='auto')
-#     card_name = Column(String(100))
-#     ruling_text = Column(String(4000))
-#     author = Column(String(30))
-#     created_ts = Column(DateTime, default=datetime.utcnow())

@@ -4,7 +4,7 @@ import difflib
 import os
 import random
 from timeit import default_timer as timer
-from typing import List, Union, Tuple, Optional, Any, Dict
+from typing import List, Union, Tuple, Dict
 from urllib.parse import quote
 
 import aiopg.sa
@@ -14,13 +14,13 @@ from discord import Embed, Color, ButtonStyle, InputTextStyle, Option, OptionCho
     ApplicationContext, Interaction
 from discord.commands import SlashCommandGroup, permissions
 from discord.ext import commands
-from discord.ext.commands import slash_command, cooldown
+from discord.ext.commands import slash_command
 from discord.ui import Button, View, Modal, InputText, Select
-from sqlalchemy import or_, null
+from sqlalchemy import null, and_
 
 from init import GloryBot
 from models.card_models import Card, Path, all_paths
-from models.db import card_ruling, pick_table
+from models.db import card_ruling, pick_table, pick_submission_table
 
 PATHS = all_paths()
 GAME_DEV_ROLE = 792601590208659456
@@ -194,6 +194,20 @@ class PathButton(Button):
         await interaction.response.edit_message(embed=embed, view=view)
 
 
+class ErrorEmbed(Embed):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = "Error:"
+        self.color = Color.brand_red()
+
+
+class SubmissionEmbed(Embed):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.title = "Response Submitted:"
+        self.color = Color.blurple()
+
+
 class GloryBaseView(View):
     message: discord.Interaction
     path: Path
@@ -320,12 +334,12 @@ class WeeklyPickView(View):
     @discord.ui.button(label="Submit your pick!", custom_id=f"submit_weekly_pick", style=ButtonStyle.primary)
     async def submit_callback(self, button: Button, interaction: discord.Interaction):
 
-        row = await self.get_active_pick(interaction.guild_id)
-
+        pick_row = await self.get_active_pick(interaction.guild_id)
         submit_view = SubmitPickView(
             db=self.db,
-            heirlooms=[row["heirloom0"], row["heirloom1"], row["heirloom2"]],
-            paths=[row["path0"], row["path1"], row["path2"]])
+            pick_id=pick_row.id,
+            heirlooms=[pick_row["heirloom0"], pick_row["heirloom1"], pick_row["heirloom2"]],
+            paths=[pick_row["path0"], pick_row["path1"], pick_row["path2"]])
 
         await interaction.response.send_message(content="Make your picks below", view=submit_view, ephemeral=True)
 
@@ -333,6 +347,7 @@ class WeeklyPickView(View):
 class SubmitPickView(GloryBaseView):
     selected_heirloom = str
     selected_paths = List[str]
+    pick_id: int
     db: aiopg.sa.Engine
 
     class HeirloomSelect(Select):
@@ -360,13 +375,14 @@ class SubmitPickView(GloryBaseView):
         def verify_selections(self) -> Tuple[bool, str]:
             if self.view.selected_heirloom == "Circlet of Obsession":
                 result = len(self.view.selected_paths) == 1
-                reason = f"Error: Only 1 path can be selected with {self.view.selected_heirloom}"
+                reason = f"Only 1 path can be selected with {self.view.selected_heirloom}"
             elif self.view.selected_heirloom == "Explorer's Pack":
                 result = len(self.view.selected_paths) == 3
-                reason = f"Error: All three paths must be selected with {self.view.selected_heirloom}"
+                reason = f"All three paths must be selected with {self.view.selected_heirloom}"
             else:
-                result = len(self.view.selected_paths) == 3
-                reason = f"Error: You must select exactly two paths with {self.view.selected_heirloom}"
+                result = len(self.view.selected_paths) == 2
+                reason = f"You must select exactly two paths with {self.view.selected_heirloom}"
+
             return result, reason
 
         async def callback(self, interaction: Interaction):
@@ -374,19 +390,42 @@ class SubmitPickView(GloryBaseView):
                   f"    Heirloom: {self.view.selected_heirloom}\n"
                   f"    Paths: {self.view.selected_paths}")
 
-            result, reason = self.verify_selections()
-            if not result:  # Validation has failed, so throw an error
-                await interaction.response.send_message(content=reason, ephemeral=True)
+            validated, reason = self.verify_selections()
 
-            self.view.disable_all_items()
-            await interaction.response.edit_message(
-                content=f"Response submitted:\n"
-                        f"    Heirloom: {self.view.selected_heirloom}\n"
-                        f"    Paths:       {self.view.selected_paths}", view=self.view)
+            # Also check whether the user has submitted a response for this pick already
+            async with self.view.db.acquire() as conn:
+                results = await conn.execute(pick_submission_table.select()
+                                             .where(and_(pick_submission_table.c.pick_id == self.view.pick_id,
+                                                         pick_submission_table.c.user_id == interaction.user.id)))
+                if await results.first():
+                    validated = False
+                    reason = f"Only one submission allowed per weekly pick per person"
+                    self.view.disable_all_items()
 
-    def __init__(self, db: aiopg.sa.Engine, heirlooms: List[str], paths: List[str]):
+            if not validated:
+                # Validation has failed, so throw an error
+                embed = ErrorEmbed(description=reason)
+            else:
+                embed = SubmissionEmbed(description=f"Heirloom: {self.view.selected_heirloom}\n"
+                                                    f"Paths: {', '.join(self.view.selected_paths)}")
+                path_dict = dict(enumerate(self.view.selected_paths))
+                async with self.view.db.acquire() as conn:
+                    await conn.execute(pick_submission_table.insert().values(
+                        pick_id=self.view.pick_id,
+                        user_id=interaction.user.id,
+                        heirloom=self.view.selected_heirloom,
+                        path1=path_dict[0],
+                        path2=path_dict.get(1),
+                        path3=path_dict.get(2),
+                    ))
+                self.view.disable_all_items()
+
+            await interaction.response.edit_message(embed=embed, view=self.view)
+
+    def __init__(self, db: aiopg.sa.Engine, pick_id: int, heirlooms: List[str], paths: List[str]):
         super().__init__()
         self.db = db
+        self.pick_id = pick_id
         self.selected_heirloom = None
         self.selected_paths = []
         self.add_item(self.HeirloomSelect(
@@ -413,7 +452,7 @@ class SubmitPickView(GloryBaseView):
             custom_id="Submit",
             row=2
         ))
-        
+
     async def on_timeout(self) -> None:
         self.disable_all_items()
 
@@ -545,8 +584,8 @@ class CardsCog(commands.Cog, name="CardsCog"):
         async with self.bot.db.acquire() as conn:
             query = (
                 card_ruling.select()
-                    .where(card_ruling.c.card_name == card_name)
-                    .order_by(card_ruling.c.created_ts.desc())
+                           .where(card_ruling.c.card_name == card_name)
+                           .order_by(card_ruling.c.created_ts.desc())
             )
             embed = ruling_embed_from_card(card, path)
             row_count = 0
@@ -566,9 +605,9 @@ class CardsCog(commands.Cog, name="CardsCog"):
         async with self.bot.db.acquire() as conn:
             results = await conn.execute(
                 pick_table.select()
-                    .where(pick_table.c.guild_id == guild_id)
-                    .where(pick_table.c.end_ts == null())
-                    .order_by(pick_table.c.id.desc()))
+                          .where(pick_table.c.guild_id == guild_id)
+                          .where(pick_table.c.end_ts == null())
+                          .order_by(pick_table.c.id.desc()))
             row = await results.first()  # Just in case multiple rows are somehow returned
             print(row)
         return row
@@ -590,7 +629,8 @@ class CardsCog(commands.Cog, name="CardsCog"):
         # Build the embed
         embed = Embed(title=f"Weekly Pick for {datetime.datetime.utcnow().strftime('%m/%d/%Y')}",
                       description=f"Click the \"View Pack\" button below to view the heirlooms and paths in more detail"
-                                  f", or \"Submit Pick\" to submit your pick!")
+                                  f", or \"Submit Pick\" to submit your pick "
+                                  f"and don't forget to discuss your choices below!")
         embed.add_field(name="Heirlooms:", inline=False, value='\n'.join(
             [f"- {card.name}" for card in heirlooms]
         ))
@@ -624,7 +664,7 @@ class CardsCog(commands.Cog, name="CardsCog"):
                 ))
         except aiopg.sa.Error as E:
             print(E)
-            await msg.delete()
+            await msg.delete_original_message()
             await ctx.send(content=f"Error in creating weekly pick")
 
     @weekly_pick.command(name="submit",
@@ -636,7 +676,8 @@ class CardsCog(commands.Cog, name="CardsCog"):
             return
 
         submit_view = SubmitPickView(
-            self.bot.db,
+            db=self.bot.db,
+            pick_id=row.id,
             heirlooms=[row["heirloom0"], row["heirloom1"], row["heirloom2"]],
             paths=[row["path0"], row["path1"], row["path2"]])
 

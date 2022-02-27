@@ -2,16 +2,11 @@ import asyncio
 import os
 import sys
 from timeit import default_timer as timer
-from datetime import datetime
 
 import aiopg.sa
-import discord
-import sqlalchemy as sa
 from aiopg.sa import create_engine
 from discord.ext import commands
-from sqlalchemy import Column, Integer, BigInteger, String, DateTime
 from sqlalchemy.schema import CreateTable
-from sqlalchemy.sql import Insert
 
 from models.db import card_ruling, pick_table, pick_submission_table
 
@@ -45,8 +40,8 @@ class GloryBot(commands.Bot):
 if sys.version_info >= (3, 8) and sys.platform.lower().startswith("win"):
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
-bot = GloryBot(debug_guilds=[912427268339560528])
-# bot = GloryBot()
+# bot = GloryBot(debug_guilds=[912427268339560528])
+bot = GloryBot()
 for ext in ['cogs.cards']:
     bot.load_extension(ext)
 
