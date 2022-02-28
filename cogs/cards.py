@@ -643,8 +643,8 @@ class CardsCog(commands.Cog, name="CardsCog"):
         # Display the embed & buttons
         msg: discord.Interaction = await ctx.respond(embed=embed, view=WeeklyPickView(db=self.bot.db))
 
+        original = await msg.original_message()
         try:
-            original = await msg.original_message()
             await original.pin(reason="Pinning weekly pick")
         except discord.Forbidden as E:
             await ctx.send(embed=ErrorEmbed(description="Unable to pin message. Likely because I'm missing the "
