@@ -643,8 +643,12 @@ class CardsCog(commands.Cog, name="CardsCog"):
         # Display the embed & buttons
         msg: discord.Interaction = await ctx.respond(embed=embed, view=WeeklyPickView(db=self.bot.db))
 
-        original = await msg.original_message()
-        await original.pin(reason="Pinning weekly pick")
+        try:
+            original = await msg.original_message()
+            await original.pin(reason="Pinning weekly pick")
+        except discord.Forbidden as E:
+            await ctx.send(embed=ErrorEmbed(description="Unable to pin message. Likely because I'm missing the "
+                                                        "\"Manage Messages\" permission."))
 
         # Finally, write everything to the database
         try:
@@ -719,15 +723,16 @@ class CardsCog(commands.Cog, name="CardsCog"):
             try:
                 msg: discord.Message = await channel.fetch_message(row["message_id"])
             except discord.NotFound:
-                print(f"Couldn't find weekly pick with message_id [ {row['message_id']} ] to unpin, skipping")
+                print(f"Couldn't find weekly pick with message_id [ {row['message_id']} ] to unpin/disable, skipping")
             else:
                 pick_view = WeeklyPickView.from_message(msg)
                 for child in pick_view.children:
                     child.disabled = True
-                await msg.unpin()
+                if msg.pinned:
+                    await msg.unpin()
                 await msg.edit(view=pick_view)
         else:
-            print(f"Couldn't find channel_id [ {row['message_id']} ] containing weekly pick to unpin, skipping")
+            print(f"Couldn't find channel_id [ {row['channel_id']} ] containing weekly pick to unpin/disable, skipping")
 
         await ctx.respond(content=f"Weekly pick started on {row.created_ts.strftime('%m/%d/%Y')} closed")
 
