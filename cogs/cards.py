@@ -4,7 +4,7 @@ import difflib
 import os
 import random
 from timeit import default_timer as timer
-from typing import List, Union, Tuple, Dict
+from typing import List, Union, Tuple, Dict, Optional
 from urllib.parse import quote
 
 import aiopg.sa
@@ -408,7 +408,9 @@ class SubmitPickView(GloryBaseView):
             else:
                 embed = SubmissionEmbed(description=f"Heirloom: {self.view.selected_heirloom}\n"
                                                     f"Paths: {', '.join(self.view.selected_paths)}")
-                path_dict = dict(enumerate(self.view.selected_paths))
+                # Sorting the paths before submitting keeps the data nice and tidy in the database later
+                selected_paths = sorted(self.view.selected_paths)
+                path_dict = dict(enumerate(selected_paths))
                 async with self.view.db.acquire() as conn:
                     await conn.execute(pick_submission_table.insert().values(
                         pick_id=self.view.pick_id,
